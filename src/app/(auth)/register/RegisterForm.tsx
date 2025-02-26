@@ -1,5 +1,6 @@
 "use client";
 
+import { registerUser } from '@/app/actions/authActions';
 import { registerSchema, RegisterSchema } from '@/lib/schemas/registerSchema';
 import { Card, CardHeader, CardBody, Button, Input } from '@heroui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,8 +16,9 @@ export default function RegisterForm() {
         resolver: zodResolver(registerSchema),
         mode: 'onTouched'
       });
-      const onSubmit = (data: RegisterSchema) => {
-        console.log(data);
+      const onSubmit = async (data: RegisterSchema) => {
+        const result = await registerUser(data);
+        console.log(result);
       };
     
       return (
