@@ -1,3 +1,5 @@
+"use client";
+
 import { calculateAge } from "@/lib/util";
 import {
   Button,
@@ -17,7 +19,7 @@ type Props = {
 };
 
 export default function MemberSidebar({ member }: Props) {
-  const pathname = usePathname;
+  const pathname = usePathname();
   const basePath = `/members/${member.userId}`;
 
   const navLinks = [
@@ -31,13 +33,13 @@ export default function MemberSidebar({ member }: Props) {
       <Image
         height={200}
         width={200}
-        src={member.image || "images/user/png"}
+        src={member.image || "images/user.png"}
         alt="User profile main image"
         className="rounded-full mt-6 aspect-square object-cover"
       />
       <CardBody>
         <div className="flex flex-col items-center">
-          <div className="text-2x.">
+          <div className="text-2xl">
             {member.name}, {calculateAge(member.dateOfBirth)}
           </div>
           <div className="text-sm text-neutral-500">
@@ -63,8 +65,7 @@ export default function MemberSidebar({ member }: Props) {
       </CardBody>
       <CardFooter>
         <Button
-          as={Link}
-          href="members"
+          href="/members"
           fullWidth
           color="secondary"
           variant="bordered"
